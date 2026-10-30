@@ -1,0 +1,141 @@
+{
+	"name": "DAILY_COPY_TASK",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "dynamic_tbl",
+						"type": "DatasetReference",
+						"parameters": {
+							"tbl_name": "COPY_CONTROL_TABLE"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup1').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_Dynamic_server_db_tbl",
+									"type": "DatasetReference",
+									"parameters": {
+										"ds_server_name": {
+											"value": "@item().SRC_SERVER_NAME",
+											"type": "Expression"
+										},
+										"ds_db_name": {
+											"value": "@item().SRC_DB_NAME",
+											"type": "Expression"
+										},
+										"ds_schema_name": {
+											"value": "@item().SRC_SCHEMA_NAME",
+											"type": "Expression"
+										},
+										"ds_tbl_name": {
+											"value": "@item().SRC_TBL_NAME",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_Dynamic_server_db_tbl",
+									"type": "DatasetReference",
+									"parameters": {
+										"ds_server_name": {
+											"value": "@item().DEST_SERVER_NAME",
+											"type": "Expression"
+										},
+										"ds_db_name": {
+											"value": "@item().DEST_DB_NAME",
+											"type": "Expression"
+										},
+										"ds_schema_name": {
+											"value": "@item().DEST_SCHEMA_NAME",
+											"type": "Expression"
+										},
+										"ds_tbl_name": {
+											"value": "@item().DEST_TBL_NAME",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-10-23T04:35:59Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,31 @@
+{
+	"name": "web_Activity2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://management.azure.com/subscriptions/969caa63-176b-4686-856a-6ac0d6689834/resourceGroups/RG-Saneet/providers/Microsoft.DataFactory/factories/DF-Saneet/pipelines/REST_API/createRun?api-version=2018-06-01",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://management.azure.com/"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2026-10-29T03:58:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

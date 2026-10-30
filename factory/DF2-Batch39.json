@@ -1,0 +1,15 @@
+{
+	"name": "DF2-Batch39",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "8d4ed5fa-794c-4fef-8565-a9fd0ce565f5",
+		"tenantId": "e81e4ea9-4f5e-4aa1-a4b3-c5e062986092"
+	}
+}

@@ -1,0 +1,47 @@
+{
+	"name": "DS_Dynamic_server_db_tbl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQL_PARAM",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"ls_db_name": {
+					"value": "@dataset().ds_db_name",
+					"type": "Expression"
+				},
+				"ls_server_name": {
+					"value": "@dataset().ds_server_name",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"ds_server_name": {
+				"type": "string"
+			},
+			"ds_db_name": {
+				"type": "string"
+			},
+			"ds_schema_name": {
+				"type": "string"
+			},
+			"ds_tbl_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().ds_schema_name",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().ds_tbl_name",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
