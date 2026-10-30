@@ -1,0 +1,60 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "DF2-Batch39"
+		},
+		"LS_BLOB_KV_connectionString": {
+			"value": "DefaultEndpointsProtocol=https;AccountName=adls2batch39;"
+		},
+		"LS_SQL_password": {
+			"value": ""
+		},
+		"LS_SQL_PARAM_password": {
+			"value": ""
+		},
+		"LS_blob_connectionString": {
+			"value": ""
+		},
+		"LS_KV_properties_typeProperties_baseUrl": {
+			"value": "https://kv-Batch39.vault.azure.net/"
+		},
+		"LS_SQL_properties_typeProperties_server": {
+			"value": "srvrbatch39.database.windows.net"
+		},
+		"LS_SQL_properties_typeProperties_database": {
+			"value": "sqldbbatch39"
+		},
+		"LS_SQL_properties_typeProperties_userName": {
+			"value": "anand"
+		},
+		"LS_SQL_KV_properties_typeProperties_server": {
+			"value": "srvrbatch39.database.windows.net"
+		},
+		"LS_SQL_KV_properties_typeProperties_database": {
+			"value": "sqldbbatch39"
+		},
+		"LS_SQL_KV_properties_typeProperties_userName": {
+			"value": "anand"
+		},
+		"LS_SQL_PARAM_properties_typeProperties_server": {
+			"value": "@{linkedService().ls_server_name}"
+		},
+		"LS_SQL_PARAM_properties_typeProperties_database": {
+			"value": "@{linkedService().ls_db_name}"
+		},
+		"LS_SQL_PARAM_properties_typeProperties_userName": {
+			"value": "anand"
+		},
+		"eventtrigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/969caa63-176b-4686-856a-6ac0d6689834/resourceGroups/RG-Batch39/providers/Microsoft.Storage/storageAccounts/adls2batch39"
+		},
+		"tumbling_trigger1_properties_pipeline_parameters_WindowStartTime": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"tumbling_trigger1_properties_pipeline_parameters_WindowEndTime": {
+			"value": "@trigger().outputs.windowEndTime"
+		}
+	}
+}
