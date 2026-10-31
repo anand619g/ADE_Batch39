@@ -9,6 +9,12 @@
 					"referenceName": "Schedule Pipeline",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "Capstone1_stg2DW",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
@@ -23,7 +29,7 @@
 						0
 					],
 					"hours": [
-						9
+						10
 					]
 				}
 			}
