@@ -9,15 +9,29 @@
 					"referenceName": "Schedule Pipeline",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "Capstone1_source2Stg",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Minute",
+				"frequency": "Day",
 				"interval": 1,
 				"startTime": "2026-10-28T03:41:00",
-				"timeZone": "India Standard Time"
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						9
+					]
+				}
 			}
 		}
 	}
